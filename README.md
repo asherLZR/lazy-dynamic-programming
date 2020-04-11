@@ -177,7 +177,7 @@ One thing we notice is that if `len(a) == len(b)`, the last value in `mainDiag` 
 
 Depending on the input strings of course, this path starting in the top-left can snake to the left or the right of the table and cause further evaluation of `uppers` or `lowers`. This change in direction is governed by our simple `minimum [W, NW, N]` when a point mutation is required. Where possible we prefer expanding in one direction rather than in both. The wonderful solution to this problem was to simply introduce `specialMin3 a b c = if a < b then a else min b c`.
 
-Now we will worry about how to fill in our values. `lowers` is represented by L, `mainDiag` by M, and `uppers` by U. The first step is to initialise our 3 diagonal stores to depend on their NW, W and N values. To construct the next value of `mainDiag` here for example, it needs to take as input `head uppers` and `head lowers`. _This is allowed even if `uppers` and `lowers` have not been evaluated._
+Now we worry about how to fill in our values. `lowers` is represented by L, `mainDiag` by M, and `uppers` by U. We initialise our 3 diagonal stores to depend on their NW, W and N values. To construct the next value of `mainDiag` here for example, it needs to take as input `head uppers` and `head lowers`. _This is allowed even if `uppers` and `lowers` have not been evaluated._ Coming from an imperative programming background, this was something quite difficult to wrap my head around, but reading more about thunks and how functional programming works was incredibly useful in bridging this gap.
 
 |     |   '' |    a |    a |    a |    a |    a |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
@@ -186,7 +186,7 @@ Now we will worry about how to fill in our values. `lowers` is represented by L,
 | a   |    - |    - |    - |    - |    - |    - |
 | a   |    - |    - |    - |    - |    - |    - |
 
-This sums up the main points I had trouble with understanding the algorithm. This is a copy of the implementation provided in the [paper](http://users.monash.edu/~lloyd/tildeStrings/Alignment/92.IPL.html), translated to Haskell and commented.
+And that's it! This sums up the main points I had trouble with understanding the algorithm. This is a copy of the implementation provided in the [paper](http://users.monash.edu/~lloyd/tildeStrings/Alignment/92.IPL.html), translated to Haskell and commented.
 ```hs
 -- | Solve the edit distance problem
 lazyDynProgEd :: 
