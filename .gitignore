@@ -1,0 +1,5 @@
+.stack-work/
+lazy-dp.cabal
+*~
+stack.yaml.lock
+dist/
